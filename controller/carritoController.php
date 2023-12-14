@@ -7,6 +7,17 @@ class CarritoController{
         include_once 'views/panelCarrito.php';
         include_once 'views/footer.php';
     }
+
+    public function vaciarcarrito() {
+        session_start();
+        if(isset($_SESSION['sel'])){
+            unset($_SESSION['sel']);
+            header('Location:'.url.'?controller=carrito&action=compra');
+        }else{
+            header('Location:'.url.'?controller=carrito&action=compra');
+        }
+            
+    }
 }
 
 ?>

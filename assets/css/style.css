@@ -19,8 +19,6 @@
 .afooter:hover{
     color: var(--buton-color);
 }
-
-
 /*Retirar valores por defecto de boostrap*/
 .row>*{
     padding: 0;
@@ -286,6 +284,8 @@
 
 
 
+/*Carta*/
+
 .img-products{
     width: 100%;
     background-color: white;
@@ -321,6 +321,22 @@
     width: 150px;
 }
 
+.boton-eliminar{
+    background-color: rgb(187, 18, 18);
+    border:none;
+    border-radius: 4px;
+    box-shadow: 0 2px 14px -8px rgba(0,0,0,0.7);
+    transition: all 0.3s ease-in-out;
+    background-image: url('../img/papelera.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 20px;
+    
+}
+
+.boton-eliminar:hover{
+    background-color: var(--color-grey-background);
+}
 
 
 
@@ -359,7 +375,7 @@
 }
 
 .login-button:hover{
-    background-color: var(--color-grey-text);
+    background-color: var(--color-grey-background);
     color: white;
 }
 .input-login{

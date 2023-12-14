@@ -17,6 +17,9 @@ class ProductoController {
         session_start();
         if (!isset($_SESSION['sel'])){
             $_SESSION['sel'] = array();
+            $id = $_POST['id'];
+            $product = ProductoDAO::getProductoByID($id);
+            array_push($_SESSION['sel'],$product);
         }else{
             if (isset($_POST['id'])) {
                 $id = $_POST['id'];
@@ -26,5 +29,6 @@ class ProductoController {
         }
         header('Location:'.url.'?controller=producto&action=carta');
     }
+    
 }
 ?>

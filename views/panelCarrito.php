@@ -8,6 +8,9 @@ session_start();
         <img class="img-carrito-vacio"src="assets/img/carro-vacio.svg" alt="carrito vacio">
     </div>
 <?php }else{ ?>
+    <form action="?controller=carrito&action=vaciarcarrito" method="post">
+        <button class=boton-eliminar type='submit' name='submit' value=''>  </button>
+    </form>
     <?php foreach ($_SESSION['sel'] as $carrito_product) { ?>
         <div class="col-md-3 justify-content-center">
             <div class="card-products">
@@ -15,8 +18,10 @@ session_start();
                 <?=$carrito_product->getNombre()?>
                 <?=$carrito_product->getCalorias()?>
                 <?=$carrito_product->getProteinas()?>
+                <form action="" method="post">
+                    <button class=boton-eliminar type='submit' name='submit' value=''>  </button>
+                </form>
             </div>
         </div>
     <?php } ?>
 <?php } ?>
-
