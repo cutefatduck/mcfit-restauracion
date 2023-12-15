@@ -11,14 +11,23 @@
 .b{
     font-weight: bold;
 }
-.afooter{
-    text-decoration: none;
-    color: white;
+
+ul{
+    margin: 0;
+    margin-top:20px;
+    padding: 0;
 }
 
-.afooter:hover{
-    color: var(--buton-color);
+hr{
+    margin: 10px;
 }
+
+li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    list-style:none;
+}
+
 /*Retirar valores por defecto de boostrap*/
 .row>*{
     padding: 0;
@@ -236,20 +245,25 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
 }
 .footer-2{
     height: 352px;
-    background-color: #20242c;
+    background-color: #242f3a;
     text-align: end;
 }
 .social{
-    width: 267px;
+    width: 19%;
 }
 .social-img{
-    height: 57px;
+    height: 60px;
 }
-.line-footer{
+.footer-line{
     color: #414f5c;
+}
+.footer-line-principal{
+    color: #414f5c;
+    margin-bottom: 30px;
 }
 
 .fill-button-footer{
@@ -261,13 +275,16 @@
     font-weight: 600;
     padding: 16px 32px;
     display: inline-block;
-    border-radius: 4px;
     width: 279px;
     max-height: 55px;
     max-width: 80%;
     text-align: center;
     transition: all 0.3s ease-in-out;
-    margin-right: 63px;
+}
+
+.col-3{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .fill-button-footer:hover{
@@ -278,10 +295,22 @@
 .footer-info{
     color: white;
     text-align: start;
-    width: 80%;
     margin: auto;
+    max-width: 1309px;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 95px;
 }
 
+.afooter{
+    text-decoration: none;
+    color: white;
+}
+
+.afooter:hover{
+    color: var(--buton-color);
+}
 
 
 /*Carta*/
@@ -297,6 +326,9 @@
     padding: 20px;
     margin-bottom: 20px;
     background-color: #f0f0f0;
+}
+.container-productos{
+    
 }
 
 

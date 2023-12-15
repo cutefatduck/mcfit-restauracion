@@ -1,5 +1,4 @@
-
-<div class="row">
+<div class="row container-productos">
     <?php foreach ($allProducts as $product) { ?>
         <div class="col-md-3 justify-content-center">
             <div class="card-products">

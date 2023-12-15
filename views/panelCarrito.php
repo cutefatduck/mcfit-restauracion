@@ -12,6 +12,7 @@ session_start();
         <button class=boton-eliminar type='submit' name='submit' value=''>  </button>
     </form>
     <?php foreach ($_SESSION['sel'] as $carrito_product) { ?>
+        <h2 class="title-ltr">Carrito</h2>
         <div class="col-md-3 justify-content-center">
             <div class="card-products">
                 <img class="img-products" src="assets/img/productos/<?=$carrito_product->getImagen()?>" alt="imagen de <?=$carrito_product->getNombre()?>">
