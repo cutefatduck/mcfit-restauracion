@@ -5,10 +5,10 @@ include_once 'Usuario.php';
 
 class UsuarioDAO{
 
-    public static function getUserLogin($usuario,$pass){
+    public static function getUserLogin($usuario,$passw){
         $conn = database::connect();
         $stmt = $conn->prepare("SELECT * FROM CLIENTES WHERE usuario=?");
-        $stmt->bind_param("i",$usuario);
+        $stmt->bind_param("s",$usuario);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -24,17 +24,18 @@ class UsuarioDAO{
             $stmt->bind_param("i",$clienteid);
             $stmt->execute();
             $result = $stmt->get_result();
+            $conn->close;
 
             if($result->num_rows === 0 ){
                 header('Location:'.url.'?controller=user&action=login');
                 return 2;
             }else{
                 $row = $result->fetch_assoc();
-                $passValue = $row['credenciales'];
+                $passwValue = $row['credenciales'];
 
-                if ($pass === $passValue){
+                if ($passw === $passwValue){
                     session_start();
-                    $_SESSION['user'] = serialize($usuarioObj);
+                    $_SESSION['user'] = $usuarioObj;
                     header('Location:'.url.'?controller=index&action=index');
                     return 3;
                 }else{
@@ -45,6 +46,49 @@ class UsuarioDAO{
 
             return 3;
             
+        }
+
+    }
+
+    public static function setUserRegister($usuario,$passw,$nombre,$apellidos,$email,$direccion,$telefono){
+
+        $conn = database::connect();
+        $stmt = $conn->prepare("SELECT * FROM CLIENTES WHERE usuario=?");
+        $stmt->bind_param("s",$usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        $stmt1 = $conn->prepare("SELECT * FROM CLIENTES WHERE email=?");
+        $stmt1->bind_param("s",$email);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        $stmt1->close();
+
+        if(!($result->num_rows === 0) && !($result1->num_rows === 0)){
+
+        }elseif(!($result->num_rows === 0)){
+
+        }elseif(!($result1->num_rows === 0)){
+            
+        }else{
+
+            $stmt = $conn->prepare("INSERT INTO CLIENTES (usuario,nombre,apellidos,email,direccion,telefono) VALUES(?,?,?,?,?,?)");
+            $stmt->bind_param("sssssi",$usuario,$nombre,$apellidos,$email,$direccion,$telefono);
+            $stmt->execute();
+            $cliente_id = $conn->insert_id;
+            $stmt->close();
+
+            $stmt1 = $conn->prepare("INSERT INTO CREDENCIALES (cliente_id,credenciales) VALUES(?,?)");
+            $stmt1->bind_param("is",$cliente_id,$passw);
+            $stmt1->execute();
+            $stmt1->close();
+
+            $conn->close();
+
+            UsuarioDAO::getUserLogin($usuario,$passw);
+
+
         }
 
     }

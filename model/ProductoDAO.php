@@ -29,5 +29,13 @@ class ProductoDAO{
         return $product;
     
     }
+
+    public static function getCategoriaByID($id){
+        $conn = database::connect();
+        $stmt = $conn->prepare("SELECT * FROM PRODUCTOS WHERE producto_id=?");
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
 }
 ?>

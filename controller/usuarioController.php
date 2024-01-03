@@ -28,11 +28,23 @@ class UserController {
 
     }
 
+    public function doregister(){
+        session_start();
+        $usuario = $_POST['user'];
+        $passw = $_POST['passw'];
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $email = $_POST['email'];
+        $direccion = $_POST['direccion'];
+        $telefono = $_POST['tel'];
+        UsuarioDAO::setUserRegister($usuario,$passw,$nombre,$apellidos,$email,$direccion,$telefono);
+    }
+
 
     public function userData(){
         include_once 'config/protected.php';
         ProtectedFunc::sessionEmpty();
-        $userObj = unserialize($_SESSION['user']);
+        $userObj = $_SESSION['user'];
         $usuario = $userObj->getUsuario();
         $email = $userObj->getEmail();
         $nombre = $userObj->getNombre();
