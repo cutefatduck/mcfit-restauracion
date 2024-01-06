@@ -20,7 +20,7 @@
                 <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"> <img src="assets/icon-lupa.svg" alt="">
                 <?php session_start();?>
                 <?php if(isset($_SESSION['user'])){?>
-                  <a class="nav-button" href="?controller=user&action=userData">Usuario</a>
+                  <a class="nav-button" href="?controller=user&action=userData"><?=$_SESSION['user']->getUsuario()?></a>
                 <?php }else{?>
                   <a class="nav-button" href="?controller=user&action=login">Login</a>
                 <?php } ?>

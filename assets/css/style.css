@@ -480,11 +480,6 @@ li{
     font-size: 34px;
     color: var(--color-grey-text);
 }
-/*Panel Usuario*/
-
-.container-dtusuario{
-    width: 50%;
-}
 
 .button-can{
     background: none;
@@ -497,6 +492,25 @@ li{
     
 
 }
+/*Panel Usuario*/
+
+.container-dtbuttons{
+    padding-top: 50px;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+.container-dtusuario{
+    width: 50%;
+}
+
+.button-can-dt{
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+
+}
+
+
 .text-button-can{
     font-weight: 900;
     font-size: 30px;
@@ -553,6 +567,7 @@ li{
     color: var(--color-grey-background);
 }
 
+/*Pedido*/
 .pedido-cookie{
     background-color: var(--background);
 }
@@ -568,5 +583,7 @@ li{
     font-family: Montserrat;
     font-weight: 900;
     font-size: 18px;
-    
+
 }
+
+/*Data User*/
