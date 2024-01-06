@@ -13,7 +13,6 @@ class ProductoController {
 
     public function sel() {
         //Inicializamos la session
-        echo $_SESSION['sel'];
         session_start();
         if (!isset($_SESSION['sel'])){
             $_SESSION['sel'] = array();
@@ -26,6 +25,19 @@ class ProductoController {
                 $product = ProductoDAO::getProductoByID($id);
                 array_push($_SESSION['sel'],$product);
             }
+        }
+
+        if(!isset($_SESSION['cantidad'])){
+            $strid = $_POST['id'];
+            $id = intval($strid);
+            $_SESSION['cantidad'] = array();
+            $cantidadId = array($id,1);
+            $_SESSION['cantidad'][$id]=1;
+        }else{
+            $strid = $_POST['id'];
+            $id = intval($strid);
+            $cantidadId = array($id,1);
+            $_SESSION['cantidad'][$id]=1;
         }
         header('Location:'.url.'?controller=producto&action=carta');
     }

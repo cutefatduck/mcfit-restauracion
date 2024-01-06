@@ -66,10 +66,13 @@ class UsuarioDAO{
         $stmt1->close();
 
         if(!($result->num_rows === 0) && !($result1->num_rows === 0)){
+            echo 1;
 
         }elseif(!($result->num_rows === 0)){
+            echo 2;
 
         }elseif(!($result1->num_rows === 0)){
+            echo 3;
             
         }else{
 
@@ -77,10 +80,10 @@ class UsuarioDAO{
             $stmt->bind_param("sssssi",$usuario,$nombre,$apellidos,$email,$direccion,$telefono);
             $stmt->execute();
             $cliente_id = $conn->insert_id;
-            $stmt->close();
 
+            $admin_id=1;
             $stmt1 = $conn->prepare("INSERT INTO CREDENCIALES (cliente_id,credenciales) VALUES(?,?)");
-            $stmt1->bind_param("is",$cliente_id,$passw);
+            $stmt1->bind_param("is",$cliente_id,$passw,);
             $stmt1->execute();
             $stmt1->close();
 

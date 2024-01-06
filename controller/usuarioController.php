@@ -52,6 +52,24 @@ class UserController {
         $direccion = $userObj->getDireccion();
         $telefono = $userObj->getTelefono();
 
+        #COOKIE ULTIMO PEDIDO
+        include_once 'model/Producto.php';
+        $serializedPedido = $_COOKIE["pedido"];
+        $pedido = unserialize($serializedPedido);
+        $productosArray = json_decode($pedido[1]);
+
+        include_once 'model/ProductoDAO.php';
+
+        $productshow = [];
+        $i = 0;
+        foreach ($productosArray as $producto){
+            $id = $producto->producto_id;
+            $cantidad = $producto->cantidad;
+            $productoDef = ProductoDAO::getProductoByID($id);
+            $productshow[$i] = [$productoDef,$cantidad];
+            $i++;
+        }
+
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
         include_once 'views/panelUsuario.php';

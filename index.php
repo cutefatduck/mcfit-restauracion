@@ -4,6 +4,7 @@ include_once "controller/productoController.php";
 include_once "controller/indexController.php";
 include_once "controller/usuarioController.php";
 include_once "controller/carritoController.php";
+include_once "controller/pedidoController.php";
 
 if (!ISSET ($_GET['controller'])){
     //si no se pasa nada, se mostrara pagina principal de la web:
