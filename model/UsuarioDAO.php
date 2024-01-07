@@ -14,7 +14,8 @@ class UsuarioDAO{
         $result = $stmt->get_result();
 
         $usuarioObj = $result->fetch_object('Usuario');
-        if(empty($usuario)){
+        
+        if(empty($usuarioObj)){
             header('Location:'.url.'?controller=user&action=login');
             return 2;
         }else{
@@ -58,7 +59,7 @@ class UsuarioDAO{
         $stmt->execute();
         $result = $stmt->get_result();
         $usuarioObj = $result->fetch_object('Administrador');
-        if(empty($usuario)){
+        if(empty($usuarioObj)){
             header('Location:'.url.'?controller=admin&action=login');
             return 2;
         }else{

@@ -4,7 +4,7 @@ session_start();
 class ProtectedFunc{
     public static function sessionEmpty(){
         if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
-            header('Location:'.url.'?controller=login&action=login');
+            header('Location:'.url.'?controller=user&action=login');
         }
     }
     
@@ -13,6 +13,7 @@ class ProtectedFunc{
             header('Location:'.url);
         }
     }
+
 }
 
 

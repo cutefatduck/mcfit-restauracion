@@ -36,6 +36,8 @@ class ProductoDAO{
         $stmt->bind_param("i",$id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
     }
 
     public static function delProducto($id){
@@ -43,15 +45,27 @@ class ProductoDAO{
         $stmt = $conn->prepare("DELETE FROM PRODUCTOS WHERE producto_id=?");
         $stmt->bind_param("i",$id);
         $stmt->execute();
+        $stmt->close();
+        $conn->close();
         
     }
 
     public static function updateProducto($id,$nombre,$precio,$calorias,$proteinas,$imagen){
         $conn = database::connect();
-        $stmt = $conn->prepare("UPDATE PRODUCTOS SET nombre = $nombre, precio = $precio, calorias = $calorias, proteinas = $proteinas, imagen = $imagen WHERE producto_id = $id");
-        var_dump($stmt);
-        $stmt->bind_param("sdiis",$nombre,$precio,$calorias,$proteinas,$imagen);
+        $stmt = $conn->prepare("UPDATE PRODUCTOS SET nombre = ?, precio = ?, calorias = ?, proteinas = ?, imagen = ? WHERE producto_id = ?");
+        $stmt->bind_param("sdidsi",$nombre,$precio,$calorias,$proteinas,$imagen,$id);
         $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
+
+    public static function insertProducto($nombre,$precio,$calorias,$proteinas,$stock,$imagen,$categoria_id){
+        $conn = database::connect();
+        $stmt = $conn->prepare("INSERT INTO PRODUCTOS( nombre, precio, calorias, proteinas, stock, imagen, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sdidisi",$nombre,$precio,$calorias,$proteinas,$stock,$imagen,$categoria_id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
     }
 }
 ?>

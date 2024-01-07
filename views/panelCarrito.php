@@ -3,7 +3,7 @@ session_start();
 
 ?>
 <div class="container-pagina">
-    <h2 class="title-ltr">Carrito</h2>
+    <div class="margin-title"><h2 class="title-ltr">Carrito</h2></div>
     <?php if(empty($_SESSION['sel'])){?>
         <div class="carrito-vacio">
             <p class="p-custom-carrito">El carrito esta vacio</p>

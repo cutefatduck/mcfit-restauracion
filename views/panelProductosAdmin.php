@@ -1,6 +1,8 @@
 <div class="container-pagina">
-<h2 class="title-ltr">Lista de productos</h2>
-<a class="fill-button-dt" href="?controller=admin&action=productonuevo">Nuevo Producto +</a>
+<div class="margin-title">
+    <h2 class="title-ltr">Lista de productos</h2>
+    <a class="fill-button-dt" href="?controller=admin&action=productonuevo">Nuevo Producto</a>
+</div>
 <div class="row container-productos justify-content-center1">
         <?php foreach ($allProducts as $product) { ?>
             <div class="col-md-3">

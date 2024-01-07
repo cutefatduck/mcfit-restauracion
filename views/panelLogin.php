@@ -8,6 +8,7 @@
                     <button class="action-button" type='submit' name='submit' value=''> Login </button>
                 </form>
             <a class="a-login" href="?controller=user&action=register">No tienes cuenta, registrate</a>
+            <p><a class="a-login" href="?controller=user&action=loginadmin">Portal de empleado</a></p>
         </div>
     </div>
 </body>

@@ -14,6 +14,7 @@ class ProductoController {
     public function sel() {
         //Inicializamos la session
         session_start();
+        $tieneDuplicados = false;
         if (!isset($_SESSION['sel'])){
             $_SESSION['sel'] = array();
             $id = $_POST['id'];
@@ -21,9 +22,23 @@ class ProductoController {
             array_push($_SESSION['sel'],$product);
         }else{
             if (isset($_POST['id'])) {
-                $id = $_POST['id'];
-                $product = ProductoDAO::getProductoByID($id);
-                array_push($_SESSION['sel'],$product);
+
+                $array = [];
+                foreach ($_SESSION['sel'] as $producto) {
+                    $array[] = $producto->getProductoId();
+                }
+                var_dump($array);
+                foreach ($array as $value) {
+                    if (in_array($value, $array)) {
+                        $tieneDuplicados = true;
+                        break;
+                    }
+                }
+                if(!$tieneDuplicados){
+                    $id = $_POST['id'];
+                    $product = ProductoDAO::getProductoByID($id);
+                    array_push($_SESSION['sel'],$product);
+                }
             }
         }
 
@@ -32,12 +47,20 @@ class ProductoController {
             $id = intval($strid);
             $_SESSION['cantidad'] = array();
             $cantidadId = array($id,1);
-            $_SESSION['cantidad'][$id]=1;
+            if($tieneDuplicados){
+                $_SESSION['cantidad'][$id]+=1;
+            }else{
+                $_SESSION['cantidad'][$id]=1;
+            }
         }else{
             $strid = $_POST['id'];
             $id = intval($strid);
             $cantidadId = array($id,1);
-            $_SESSION['cantidad'][$id]=1;
+            if($tieneDuplicados){
+                $_SESSION['cantidad'][$id]+=1;
+            }else{
+                $_SESSION['cantidad'][$id]=1;
+            }
         }
         header('Location:'.url.'?controller=producto&action=carta');
     }

@@ -3,7 +3,8 @@ include_once 'model/PedidoDAO.php';
 class PedidoController {
     public function trampedido() {
         session_start();
-
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         $jsonArray = [];
         foreach ($_SESSION['sel'] as $producto) {
             

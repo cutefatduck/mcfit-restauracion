@@ -12,9 +12,10 @@
 <section>
   
     <div class="container-fluid banner d-flex">
+      <img class="img-banner" src="assets/img/girl-eating.png" alt="girl eating">
       <div class="container-title-banner ">
-        <h2 class="title-banner">COMPRA POR CALORIAS</h2>
-        <a class="fill-button" href="?controller=productos">Carta</a>
+        <h2 class="title-banner ">COMPRA POR CALORIAS</h2>
+        <a class="fill-button button-banner" href="?controller=producto&action=carta">Carta</a>
       </div>
     </div>
   
@@ -22,7 +23,7 @@
 
 <section>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row invert-row">
       <div class="col-12 col-md-6 ">
         <div class="d-flex justify-content-center align-items-center padding-card">
           <div class="padding-content-cards">
@@ -54,7 +55,7 @@
       <div class="col-12 col-md-6">
         <div class="col-custom-ltr-background-l d-flex">
           <div class="container-image-2">
-            <img class="image-ltr" src="assets/img/salmon_con_esparragos_verdes.jpg" alt="">
+            <img class="image-ltr" src="assets/img/hombre-comiendo-ensalada.jpg" alt="">
           </div>
         </div>
       </div>
@@ -84,20 +85,35 @@
     </div>
   </div>
   <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-md-2 column card-item">
-      <a href="" class="fill-button">Más Información</a>
+    <div class="col-md-2 column">
+      <img class="img-highlights"src="assets/img/productos/caseina.png" alt="caseina">
+      <div class="card-item">
+        <a href="" class="fill-button">Más Información</a>
+      </div>
     </div>
-    <div class="col-md-2 column card-item">
-      <a href="" class="fill-button">Más Información</a>
+    <div class="col-md-2 column">
+    <img class="img-highlights"src="assets/img/productos/batido_de_arandanos.png" alt="caseina">
+    <div class="card-item">
+        <a href="" class="fill-button">Más Información</a>
+      </div>
     </div>
-    <div class="col-md-2 column card-item">
-      <a href="" class="fill-button">Más Información</a>
+    <div class="col-md-2 column">
+    <img class="img-highlights"src="assets/img/productos/ensalada_pollo.png" alt="caseina">
+    <div class="card-item">
+        <a href="" class="fill-button">Más Información</a>
+      </div>
     </div>
-    <div class="col-md-2 column card-item">
-      <a href="" class="fill-button">Más Información</a>
+    <div class="col-md-2 column">
+    <img class="img-highlights"src="assets/img/productos/pollo_arroz_verduras.png" alt="caseina">
+    <div class="card-item">
+        <a href="" class="fill-button">Más Información</a>
+      </div>
     </div>
-    <div class="col-md-2 column card-item">
-      <a href="" class="fill-button">Más Información</a>
+    <div class="col-md-2 column">
+    <img class="img-highlights"src="assets/img/productos/complemento_alimenticio.png" alt="caseina">
+    <div class="card-item">
+        <a href="" class="fill-button">Más Información</a>
+      </div>
     </div>
   </div>
 </body>

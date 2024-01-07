@@ -68,20 +68,61 @@ class AdminController{
     }
 
     public function productodoupdate(){
-        $id = $_POST['id'];
+        $id = intval($_POST['id']);
         $nombre = $_POST['nombre'];
-        $precio = $_POST['precio'];
-        $calorias = $_POST['calorias'];
-        $proteinas = $_POST['proteinas'];
+        $precio = floatval($_POST['precio']);
+        $calorias = intval($_POST['calorias']);
+        $proteinas = floatval($_POST['proteinas']);
         $imagen = "";
-        if(!$_POST['imagen']){
+        if (!empty($_FILES["imagen"]["name"])) {
+            $targetDirectory = "assets/img/productos/";
+            $targetFile = $targetDirectory . basename($_FILES["imagen"]["name"]);
+    
+            if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $targetFile)) {
+                $imagen = basename($_FILES["imagen"]["name"]);
+            }
+        } else {
             $imagen = $_POST['imagenDefault'];
-        }else{
-            $imagen = $_POST['imagen'];
         }
-        
+
         ProductoDAO::updateProducto($id,$nombre,$precio,$calorias,$proteinas,$imagen);
+
+        header('Location:'.url.'?controller=admin&action=listProductos');
+
+        
     }
+
+    public function productonuevo(){
+
+        include_once 'views/meta.php';
+        include_once 'views/cabecera.php';
+        include_once 'views/panelProductoNew.php';
+        include_once 'views/footer.php';
+
+    }
+
+    public function productonuevoInsert(){
+        $nombre = $_POST['nombre'];
+        $precio = floatval($_POST['precio']);
+        $calorias = intval($_POST['calorias']);
+        $proteinas = floatval($_POST['proteinas']);
+        $stock = intval($_POST['stock']);
+        $imagen = "";
+        $categoria_id = intval($_POST['categoria_id']);
+
+        
+        $targetDirectory = "assets/img/productos/";
+        $targetFile = $targetDirectory . basename($_FILES["imagen"]["name"]);
+    
+        if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $targetFile)) {
+                $imagen = basename($_FILES["imagen"]["name"]);
+                
+        }
+
+        ProductoDAO::insertProducto($nombre,$precio,$calorias,$proteinas,$stock,$imagen,$categoria_id);
+        header('Location:'.url.'?controller=admin&action=listProductos');
+    }
+    
     
 }
 

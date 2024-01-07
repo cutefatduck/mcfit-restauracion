@@ -1,5 +1,5 @@
 <div class="container-pagina">
-    <h2 class="title-ltr">Carta</h2>
+    <div class="margin-title"><h2 class="title-ltr">Carta</h2></div>
     <div class="row container-productos justify-content-evenly">
         <?php foreach ($allProducts as $product) { ?>
             <div class="col-md-3">
