@@ -10,9 +10,6 @@ session_start();
             <img class="img-carrito-vacio"src="assets/img/carro-vacio.svg" alt="carrito vacio">
         </div>
     <?php }else{ $precio_carrito = []; $cantidad_carrito = [];?>
-        <form action="?controller=carrito&action=vaciarcarrito" method="post">
-            <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
-        </form>
         <div class="row">
             <div class="col-md-8">
             <?php foreach ($_SESSION['sel'] as $carrito_product) { ?>
@@ -63,5 +60,10 @@ session_start();
             </div>
         </div>
     <?php } ?>
+</div>
+<div class="margin-title">
+    <form action="?controller=carrito&action=vaciarcarrito" method="post">
+        <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
+    </form>
 </div>
 </div>
