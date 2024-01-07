@@ -27,15 +27,11 @@
       <div class="col-12 col-md-6 ">
         <div class="d-flex justify-content-center align-items-center padding-card">
           <div class="padding-content-cards">
-            <h3 class="title-ltr">EL PROGRAMA DE FIDELIZACIÓN PARA NUESTROS SOCIOS</h3>
-            <p>Las ventajas que te mereces – inscríbete ahora en McFIT+ y disfruta de todas las ventajas exclusivas:</p>
+            <h3 class="title-ltr">ALIMENTOS QUE NO DECEPCIONAN FISICA Y MENTALMENTE</h3>
+            <p>LNuestros alimentos estan completamente pensados para distintas dietas para mejorar el rendimiento físico y conseguir los resultados esperados en el menor tiempo posible.</p>
 
-                <p>Entrena con amigos/as no socios<br>
-                Entrena con entrenador de McFIT<br>
-                Vale para un/a amigo/a o familiar<br>
-                Descuentos para familia y amigos/as</p>
+                <p>Se pueden usar en dietas de perdida de peso, ganar masa muscular y bienestar.</p>
                 
-                <p>Descarga la App y activa McFIT+ gratis.</p>
             <a href="" class="fill-button">Más Información</a>
           </div>
         </div>
@@ -62,14 +58,16 @@
       <div class="col-12 col-md-6">
         <div class="d-flex justify-content-center align-items-center padding-card">
           <div class="padding-content-cards">
-            <h3 class="title-ltr">EL PROGRAMA DE FIDELIZACIÓN PARA NUESTROS SOCIOS</h3>
-            <p>Las ventajas que te mereces – inscríbete ahora en McFIT+ y disfruta de todas las ventajas exclusivas:</p>
+            <h3 class="title-ltr">LA COMIDA APOYA TU RUTINA</h3>
+
+                <p>Es recomendable seguir una rutina de ejercicios con estos alimentos ya que estan preparados para dietas estrictas y completas.</p>
 
                 <p>Entrena con amigos/as no socios
                 Entrena con entrenador de McFIT
                 Vale para un/a amigo/a o familiar
                 Descuentos para familia y amigos/as</p>
                 <p>Descarga la App y activa McFIT+ gratis.</p>
+
             <a href="" class="fill-button">Más Información</a>
           </div>
         </div>

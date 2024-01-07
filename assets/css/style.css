@@ -453,6 +453,7 @@ form {
     transition: all 0.3s ease-in-out;
     padding: 15px;
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .boton-eliminar:hover{

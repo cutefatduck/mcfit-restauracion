@@ -3,14 +3,13 @@ session_start();
 
 ?>
 <div class="container-pagina">
-    <div class="margin-title"><h2 class="title-ltr">Carrito</h2></div>
+<div class="margin-title"><h2 class="title-ltr">Carrito</h2>
     <?php if(empty($_SESSION['sel'])){?>
         <div class="carrito-vacio">
             <p class="p-custom-carrito">El carrito esta vacio</p>
             <img class="img-carrito-vacio"src="assets/img/carro-vacio.svg" alt="carrito vacio">
         </div>
     <?php }else{ $precio_carrito = []; $cantidad_carrito = [];?>
-        
         <form action="?controller=carrito&action=vaciarcarrito" method="post">
             <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
         </form>
@@ -64,4 +63,5 @@ session_start();
             </div>
         </div>
     <?php } ?>
+</div>
 </div>

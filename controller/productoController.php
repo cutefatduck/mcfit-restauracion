@@ -22,22 +22,17 @@ class ProductoController {
             array_push($_SESSION['sel'],$product);
         }else{
             if (isset($_POST['id'])) {
-
                 $array = [];
                 foreach ($_SESSION['sel'] as $producto) {
                     $array[] = $producto->getProductoId();
                 }
-                var_dump($array);
-                foreach ($array as $value) {
-                    if (in_array($value, $array)) {
-                        $tieneDuplicados = true;
-                        break;
-                    }
-                }
+                $id = $_POST['id'];
+                // Verificar si el ID ya existe en el array
+                $tieneDuplicados = in_array($id, $array);
                 if(!$tieneDuplicados){
-                    $id = $_POST['id'];
                     $product = ProductoDAO::getProductoByID($id);
                     array_push($_SESSION['sel'],$product);
+                    echo 1;
                 }
             }
         }
