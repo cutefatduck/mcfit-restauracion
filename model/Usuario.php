@@ -2,13 +2,13 @@
 
 class Usuario {
 
-    private $cliente_id;
-    private $usuario;
-    private $email;
-    private $nombre;
-    private $apellidos;
-    private $direccion;
-    private $telefono;
+    protected $cliente_id;
+    protected $usuario;
+    protected $email;
+    protected $nombre;
+    protected $apellidos;
+    protected $direccion;
+    protected $telefono;
 
     public function __construct() {
     }

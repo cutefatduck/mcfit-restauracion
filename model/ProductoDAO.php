@@ -37,5 +37,21 @@ class ProductoDAO{
         $stmt->execute();
         $result = $stmt->get_result();
     }
+
+    public static function delProducto($id){
+        $conn = database::connect();
+        $stmt = $conn->prepare("DELETE FROM PRODUCTOS WHERE producto_id=?");
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
+        
+    }
+
+    public static function updateProducto($id,$nombre,$precio,$calorias,$proteinas,$imagen){
+        $conn = database::connect();
+        $stmt = $conn->prepare("UPDATE PRODUCTOS SET nombre = $nombre, precio = $precio, calorias = $calorias, proteinas = $proteinas, imagen = $imagen WHERE producto_id = $id");
+        var_dump($stmt);
+        $stmt->bind_param("sdiis",$nombre,$precio,$calorias,$proteinas,$imagen);
+        $stmt->execute();
+    }
 }
 ?>

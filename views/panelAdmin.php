@@ -1,13 +1,11 @@
 
 <body>
 <div class="container-pagina">
-    <h2 class="title-ltr">Bienvenido <?=$_SESSION['user']->getNombre()?></h2>
+    <h2 class="title-ltr">Bienvenido <?=$_SESSION['admin']->getNombre()?></h2>
     <div class="container-dtbuttons d-flex">
         <div class="row container-dtusuario">
             <div class="col-sm-6 justify-content-center d-flex">
-                <form action="#" method="post">
-                    <button class="fill-button-dt button-can-dt" type="submit">Pedidos</button>
-                </form>
+                <a class="fill-button-dt" href="?controller=admin&action=listProductos">Productos</a>
             </div>
             <div class="col-sm-6 justify-content-center d-flex">
                 <form action="#" method="post">

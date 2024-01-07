@@ -21,10 +21,13 @@
                 <?php session_start();?>
                 <?php if(isset($_SESSION['user'])){?>
                   <a class="nav-button" href="?controller=user&action=userData"><?=$_SESSION['user']->getUsuario()?></a>
+                  <a class="nav-button" href="?controller=carrito&action=compra">Carrito</a>
+                <?php }elseif(isset($_SESSION['admin'])){?>
+                  <a class="nav-button" href="?controller=admin&action=userDataAdmin"><?=$_SESSION['admin']->getUsuario()?></a>
                 <?php }else{?>
                   <a class="nav-button" href="?controller=user&action=login">Login</a>
+                  <a class="nav-button" href="?controller=carrito&action=compra">Carrito</a>
                 <?php } ?>
-                <a class="nav-button" href="?controller=carrito&action=compra">Carrito</a>
             </form>
           </div>
         </div>

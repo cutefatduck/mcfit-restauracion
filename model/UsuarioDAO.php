@@ -2,6 +2,7 @@
 
 include_once 'config/database.php';
 include_once 'Usuario.php';
+include_once 'Administrador.php';
 
 class UsuarioDAO{
 
@@ -48,6 +49,49 @@ class UsuarioDAO{
             
         }
 
+    }
+
+    public static function getAdminLogin($usuario,$passw){
+        $conn = database::connect();
+        $stmt = $conn->prepare("SELECT * FROM ADMINISTRADORES WHERE usuario=?");
+        $stmt->bind_param("s",$usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $usuarioObj = $result->fetch_object('Administrador');
+        if(empty($usuario)){
+            header('Location:'.url.'?controller=admin&action=login');
+            return 2;
+        }else{
+        
+
+            $clienteid = $usuarioObj->getClienteId();
+            $stmt = $conn->prepare("SELECT * FROM CREDENCIALES WHERE cliente_id=?");
+            $stmt->bind_param("i",$clienteid);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $conn->close;
+
+            if($result->num_rows === 0 ){
+                header('Location:'.url.'?controller=admin&action=login');
+                return 2;
+            }else{
+                $row = $result->fetch_assoc();
+                $passwValue = $row['credenciales'];
+
+                if ($passw === $passwValue){
+                    session_start();
+                    $_SESSION['admin'] = $usuarioObj;
+                    header('Location:'.url.'?controller=index&action=index');
+                    return 3;
+                }else{
+                    header('Location:'.url.'?controller=admin&action=login');
+                    return 2;
+                }
+            }
+
+            return 3;
+            
+        }
     }
 
     public static function setUserRegister($usuario,$passw,$nombre,$apellidos,$email,$direccion,$telefono){

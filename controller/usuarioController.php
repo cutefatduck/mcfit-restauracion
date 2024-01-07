@@ -18,6 +18,23 @@ class UserController {
         UsuarioDAO::getUserLogin($usuario,$pass);
     }
 
+    public function loginadmin(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionFull();
+        include_once 'views/meta.php';
+        include_once 'views/cabecera.php';
+        include_once 'views/panelLoginAdmin.php';
+        include_once 'views/footer.php';   
+
+    }
+
+    public function dologinadmin(){
+        session_start();
+        $usuario = $_POST['user'];
+        $pass = $_POST['pass'];
+        UsuarioDAO::getAdminLogin($usuario,$pass);
+    }
+
     public function register(){
         include_once 'config/protected.php';
         ProtectedFunc::sessionFull();
@@ -53,22 +70,31 @@ class UserController {
         $telefono = $userObj->getTelefono();
 
         #COOKIE ULTIMO PEDIDO
-        include_once 'model/Producto.php';
-        $serializedPedido = $_COOKIE["pedido"];
-        $pedido = unserialize($serializedPedido);
-        $productosArray = json_decode($pedido[1]);
+        if (isset($_COOKIE["pedido"])) {
+            include_once 'model/Producto.php';
+            $serializedPedido = $_COOKIE["pedido"];
+            $pedido = unserialize($serializedPedido);
 
-        include_once 'model/ProductoDAO.php';
-
-        $productshow = [];
-        $i = 0;
-        foreach ($productosArray as $producto){
-            $id = $producto->producto_id;
-            $cantidad = $producto->cantidad;
-            $productoDef = ProductoDAO::getProductoByID($id);
-            $productshow[$i] = [$productoDef,$cantidad];
-            $i++;
+            /*Date Format*/
+            $dateString = '202401071157';
+            $dateObj = DateTime::createFromFormat('YmdHi', $pedido[2]);
+            $formattedDate = $dateObj->format('H:i m/d/Y');
+            $productosArray = json_decode($pedido[1]);
+            /*Precio*/
+            $precioTotal = $pedido[3];
+            include_once 'model/ProductoDAO.php';
+    
+            $productshow = [];
+            $i = 0;
+            foreach ($productosArray as $producto){
+                $id = $producto->producto_id;
+                $cantidad = $producto->cantidad;
+                $productoDef = ProductoDAO::getProductoByID($id);
+                $productshow[$i] = [$productoDef,$cantidad];
+                $i++;
+            }
         }
+
 
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
