@@ -76,7 +76,6 @@ class UserController {
             $pedido = unserialize($serializedPedido);
 
             /*Date Format*/
-            $dateString = '202401071157';
             $dateObj = DateTime::createFromFormat('YmdHi', $pedido[2]);
             $formattedDate = $dateObj->format('H:i m/d/Y');
             $productosArray = json_decode($pedido[1]);
@@ -106,5 +105,12 @@ class UserController {
         session_start();
         session_destroy();
         header("Location:".url);
+    }
+
+    public function comentario(){
+        include_once 'views/meta.php';
+        include_once 'views/cabecera.php';
+        include_once 'views/panelComentarios.html';
+        include_once 'views/footer.php';
     }
 }

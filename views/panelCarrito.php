@@ -59,11 +59,13 @@ session_start();
                 </div>
             </div>
         </div>
-    <?php } ?>
-</div>
-<div class="margin-title">
+        <div class="margin-title">
     <form action="?controller=carrito&action=vaciarcarrito" method="post">
         <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
     </form>
+    <?php } ?>
+
 </div>
+</div>
+
 </div>

@@ -12,6 +12,14 @@
     font-weight: bold;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+.navbar-collapse {
+    z-index: 3;
+}
+
 ul{
     margin: 0;
     margin-top:20px;

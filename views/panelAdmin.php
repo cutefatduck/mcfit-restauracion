@@ -18,15 +18,6 @@
                 </form>
             </div>
         </div>
-
-
-    <?php 
-        if(isset($_COOKIE['pedido'])){
-            include_once 'panelPedidos.php';
-        }
-        
-    ?>
-
     </div>
 </div>
 

@@ -4,7 +4,8 @@ class AdminController{
 
 
     public function userDataAdmin(){
-        
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
         include_once 'views/panelAdmin.php';
@@ -12,6 +13,8 @@ class AdminController{
     }
 
     public function listProductos(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         include_once 'model/ProductoDAO.php';
         $allProducts = ProductoDAO::getAllProducts();
         include_once 'views/meta.php';
@@ -21,6 +24,8 @@ class AdminController{
     }
 
     public function eliminarProducto(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         if(isset($_POST['id'])){
             if(isset($_POST['con']) && $_POST['con']==="1"){
                 $id=intval($_POST['id']);
@@ -37,6 +42,8 @@ class AdminController{
     }
 
     public function eliminarConProducto(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
         include_once 'views/panelProductosConAdmin.php';
@@ -44,6 +51,8 @@ class AdminController{
     }
 
     public function editarConProducto(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         $nombre = "";
         $precio = "";
         $calorias = "";
@@ -68,6 +77,8 @@ class AdminController{
     }
 
     public function productodoupdate(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         $id = intval($_POST['id']);
         $nombre = $_POST['nombre'];
         $precio = floatval($_POST['precio']);
@@ -93,6 +104,8 @@ class AdminController{
     }
 
     public function productonuevo(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
 
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
@@ -102,6 +115,8 @@ class AdminController{
     }
 
     public function productonuevoInsert(){
+        include_once 'config/protected.php';
+        ProtectedFunc::sessionEmpty();
         $nombre = $_POST['nombre'];
         $precio = floatval($_POST['precio']);
         $calorias = intval($_POST['calorias']);

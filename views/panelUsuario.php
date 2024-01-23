@@ -1,7 +1,9 @@
 
 <body>
 <div class="container-pagina">
-    <h2 class="title-ltr">Bienvenido <?=$_SESSION['user']->getNombre()?></h2>
+    <div class="margin-title">
+        <h2 class="title-ltr">Bienvenido <?=$_SESSION['user']->getNombre()?></h2>
+    </div>
     <div class="container-dtbuttons d-flex">
         <div class="row container-dtusuario">
             <div class="col-sm-6 justify-content-center d-flex">

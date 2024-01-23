@@ -1,6 +1,7 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid d-flex">
+        <div class="container-fluid">
           <a class="navbar-brand" href="?controller=index">
             <div class="logo"></div>
           </a>
@@ -17,7 +18,7 @@
               </li>
             </ul>
             <form class="d-flex nav-form-search" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"> <img src="assets/icon-lupa.svg" alt="">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                 <?php session_start();?>
                 <?php if(isset($_SESSION['user'])){?>
                   <a class="nav-button" href="?controller=user&action=userData"><?=$_SESSION['user']->getUsuario()?></a>
