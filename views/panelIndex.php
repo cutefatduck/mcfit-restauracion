@@ -10,7 +10,6 @@
 
 <body>
 <section>
-  
     <div class="container-fluid banner d-flex">
       <img class="img-banner" src="assets/img/girl-eating.png" alt="girl eating">
       <div class="container-title-banner ">
@@ -114,6 +113,74 @@
       </div>
     </div>
   </div>
+  </section>
+
+  <section>
+    <div class="container-pagina">
+      <div class="title-container">
+        <h2 class="title-ltr text-center">COMENTARIOS</h2>
+        <div class="row">
+          <div class="col-4">
+            <div class="comentario-container margin-lefta">
+                <h3 class="comentario-nombre">Ordenar por</h3>
+                <hr>
+                <select id="orden">
+                    <option value="1">Recientes</option>
+                    <option value="2">Orden Ascendente</option>
+                    <option value="3">Orden Descendiente </option>
+                </select>
+            </div>
+            <div class="comentario-container margin-lefta">
+              <h3 class="comentario-nombre">Valoraciones</h3>
+              <hr>
+              <p>
+                <input type="checkbox" id="5-estrellas" name="estrellas" value="5">
+                <label for="5-estrellas"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"></label>
+              </p>
+              <p>
+                <input type="checkbox" id="4-estrellas" name="estrellas" value="4">
+                <label for="4-estrellas"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"></label>
+              </p>
+              <p>
+              <input type="checkbox" id="3-estrellas" name="estrellas" value="3">
+              <label for="3-estrellas"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"></label>
+              </p>
+              <p>
+              <input type="checkbox" id="2-estrellas" name="estrellas" value="2">
+              <label for="2-estrellas"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"></label>
+              </p>
+              <p>
+              <input type="checkbox" id="1-estrellas" name="estrellas" value="1">
+              <label for="1-estrellas"><img src="assets/img/valoracion_llena.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"><img src="assets/img/valoracion_vacia.svg" class="comentario-valoracion"></label>
+              </p>
+            </div>
+          </div>
+          <div class="col-8">
+            <form id="formulario-comentario">
+              <textarea style="resize: none;"type="textarea" class="input-login" placeholder="Escribe tu opinion"></textarea>
+              <button type="submit" class="fill-button">Enviar</button>
+              <div class="rating d-flex flex-row-reverse justify-content-end">
+                <input type="radio" id="estrella5" name="puntuacion" value="5">
+                <label for="estrella5"></label>
+                <input type="radio" id="estrella4" name="puntuacion" value="4">
+                <label for="estrella4"></label>
+                <input type="radio" id="estrella3" name="puntuacion" value="3">
+                <label for="estrella3"></label>
+                <input type="radio" id="estrella2" name="puntuacion" value="2">
+                <label for="estrella2"></label>
+                <input type="radio" id="estrella1" name="puntuacion" value="1" checked>
+                <label for="estrella1"></label>
+              </div>
+            </form>
+            <div id="comentarios">
+            </div>
+          </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+        <script src="assets/js/comentario.js"></script>
+      </div>
+    </div>
+  </section>
 </body>
 
 <?php include_once "views/footer.php"?>

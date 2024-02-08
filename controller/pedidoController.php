@@ -20,7 +20,9 @@ class PedidoController {
             $time = date("YmdHi");
             $total= $_SESSION['cantidad']['total'];
 
-            setcookie($cliente_id,$jsonString,$total,$time,);
+            $cookie = [$cliente_id,$jsonString,$time,$total];
+            $serializedCookie = serialize($cookie);
+            setcookie("pedido", $serializedCookie, time()+3600, "/"); 
             
             
             PedidoDAO::setPedido($cliente_id,$jsonString,$total,$time);
@@ -38,21 +40,12 @@ class PedidoController {
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
 
-        $pedido = "s";
         include_once 'views/panelRevisionPedido.php';
         include_once 'views/footer.php';
 
     }
 
-    public function setcookie($cliente_id,$jsonString,$time,$total){
-        $cookie = [$cliente_id,$jsonString,$time,$total];
-        $serializedCookie = serialize($cookie);
-        setcookie("pedido", $serializedCookie, time()+3600, "/"); 
-        
-    }
     
-
-
     
 }
 ?>

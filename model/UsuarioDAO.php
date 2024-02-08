@@ -140,6 +140,23 @@ class UsuarioDAO{
         }
 
     }
+
+    public static function getClienteByID($id){
+        $conn = database::connect();
+        $stmt = $conn->prepare("SELECT * FROM CLIENTES WHERE cliente_id=?");
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $usuarioObj = $result->fetch_object('Usuario');
+        $stmt->close();
+
+        if(empty($usuarioObj)){
+            return "USUARIO NO ENCONTRADO";
+        }else{
+
+        return $usuarioObj->getUsuario();
+        }
+    }
 }
 
 ?>

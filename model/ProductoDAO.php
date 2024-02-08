@@ -11,6 +11,7 @@ class ProductoDAO{
         while ($obj = $stmt->fetch_object('Producto')) {
             $products[] = $obj;
         }
+
         
         return $products;
     }

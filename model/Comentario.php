@@ -4,18 +4,26 @@ class Comentario {
 
     protected $comentario_id;
     protected $cliente_id;
+    protected $usuario;
+    protected $nombre;
+    protected $apellido;
     protected $comentario;
     protected $valoracion;
 
 
-    public function __construct($comentario_id, $cliente_id, $comentario, $valoracion)
+    public function __construct($comentario_id, $cliente_id, $usuario, $nombre, $apellido, $comentario, $valoracion)
     {
         $this->$comentario_id = $comentario_id;
         $this->$cliente_id = $cliente_id;
+        $this->$usuario = $usuario;
+        $this->$nombre = $nombre;
+        $this->$apellido = $apellido;
         $this->$comentario = $comentario;
         $this->$valoracion = $valoracion;
     }
+
     
+
 
     /**
      * Get the value of comentario_id
@@ -49,6 +57,24 @@ class Comentario {
     public function setClienteId($cliente_id): self
     {
         $this->cliente_id = $cliente_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nombre
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set the value of nombre
+     */
+    public function setNombre($nombre): self
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }
@@ -89,5 +115,5 @@ class Comentario {
         return $this;
     }
 }
-
+    
 ?>
