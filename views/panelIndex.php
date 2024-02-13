@@ -158,7 +158,6 @@
           <div class="col-8">
             <form id="formulario-comentario">
               <textarea style="resize: none;"type="textarea" class="input-login" placeholder="Escribe tu opinion"></textarea>
-              <button type="submit" class="fill-button">Enviar</button>
               <div class="rating d-flex flex-row-reverse justify-content-end">
                 <input type="radio" id="estrella5" name="puntuacion" value="5">
                 <label for="estrella5"></label>
@@ -171,6 +170,7 @@
                 <input type="radio" id="estrella1" name="puntuacion" value="1" checked>
                 <label for="estrella1"></label>
               </div>
+              <button type="submit" class="fill-button">Enviar</button>
             </form>
             <div id="comentarios">
             </div>

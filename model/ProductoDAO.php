@@ -31,9 +31,9 @@ class ProductoDAO{
     
     }
 
-    public static function getCategoriaByID($id){
+    public static function getProductByCategoriaID($id){
         $conn = database::connect();
-        $stmt = $conn->prepare("SELECT * FROM PRODUCTOS WHERE producto_id=?");
+        $stmt = $conn->prepare("SELECT * FROM PRODUCTOS WHERE categoria_id=?");
         $stmt->bind_param("i",$id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -68,5 +68,9 @@ class ProductoDAO{
         $stmt->close();
         $conn->close();
     }
+
+
+
+
 }
 ?>

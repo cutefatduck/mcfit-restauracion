@@ -542,6 +542,32 @@
      
  
  }
+
+
+ input[type="radio"] {
+    display: none;
+}
+
+
+.propinas-container input[type="radio"] + label {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid var(--color-grey-text);
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-grey-text)
+}
+
+
+.propinas-container input[type="radio"]:checked + label {
+    background-color: var(--color-grey-background);
+    color: white;
+}
+
+.propinas-container{
+    margin-top: 20px;
+}
+
  /*Panel Usuario*/
  
  .container-dtbuttons{
@@ -764,6 +790,7 @@
  
  .rating {
      display: flex;
+     margin-bottom: 20px;
    }
  
  .rating input {

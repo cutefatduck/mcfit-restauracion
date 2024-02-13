@@ -1,9 +1,11 @@
 <?php
 include_once 'model/ProductoDAO.php';
+include_once 'model/CategoriaDAO.php';
 class ProductoController {
     public function carta() {
 
         $allProducts = ProductoDAO::getAllProducts();
+        $allCategories = CategoriaDAO::getAllCategorias();
         include_once 'views/meta.php';
         include_once 'views/cabecera.php';
         include_once 'views/panelProductos.php';

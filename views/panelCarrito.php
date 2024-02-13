@@ -48,7 +48,31 @@ session_start();
                             <p class="text-recuento"><?=$precio_carrito[$i]?> * <?=$cantidad_carrito[$i]?> = <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
                         <?php } ?>
                     </div>
+                    <div class="propinas-container">
+                        <h3 class="comentario-nombre">Propinas</h3>
+                        <hr>
+                            <input type="radio" id="nada-propina" name="propina" value="0">
+                            <label for="nada-propina">Nada</label>
+
+                            <input type="radio" id="3-propina" name="propina" value="0.03" checked>
+                            <label for="3-propina">3%</label>
+   
+                            <input type="radio" id="6-propina" name="propina" value="0.06">
+                            <label for="6-propina">6%</label>
+             
+                            <input type="radio" id="10-propina" name="propina" value="0.1">
+                            <label for="10-propina">10%</label>
+                   
+                            <input type="radio" id="20-propina" name="propina" value="0.2">
+                            <label for="20-propina">20%</label>
+                 
+                            <input type="radio" id="40-propina" name="propina" value="0.4">
+                            <label for="40-propina">40%</label>
+                        </p>
+                    </div>
+                    <span id="propina"></span>
                     <div class="d-flex justify-content-between">
+                        
                         <p class="text-title-precio">Total</p>
                         <p class="text-title-precio"><?=array_sum($total_carrito)?> €</p>
                         <?php $_SESSION['cantidad']['total']=array_sum($total_carrito)?>
@@ -69,3 +93,4 @@ session_start();
 </div>
 
 </div>
+<script src="assets/js/propina.js"></script>
