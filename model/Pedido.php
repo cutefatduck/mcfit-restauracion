@@ -6,6 +6,7 @@ class Pedido  {
   private $cliente_id;
   private $productoJSON;
   private $precioTotal;
+  private $propina;
   private $fechaPedido;
 
     public function __construct($pedido_id, $cliente_id, $productoJSON, $precioTotal, $fechaPedido)
@@ -17,9 +18,6 @@ class Pedido  {
         $this->$fechaPedido = $fechaPedido;
     }
 
-
-
-  
   /**
    * Get the value of pedido_id
    */
@@ -93,6 +91,24 @@ class Pedido  {
   }
 
   /**
+   * Get the value of propina
+   */
+  public function getPropina()
+  {
+    return $this->propina;
+  }
+
+  /**
+   * Set the value of propina
+   */
+  public function setPropina($propina): self
+  {
+    $this->propina = $propina;
+
+    return $this;
+  }
+
+  /**
    * Get the value of fechaPedido
    */
   public function getFechaPedido()
@@ -109,4 +125,6 @@ class Pedido  {
 
     return $this;
   }
-}
+    }
+
+

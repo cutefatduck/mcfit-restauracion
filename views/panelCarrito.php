@@ -70,15 +70,18 @@ session_start();
                             <label for="40-propina">40%</label>
                         </p>
                     </div>
-                    <span id="propina"></span>
                     <div class="d-flex justify-content-between">
+                        <input type="number" id="total-carrto" hidden value="<?=array_sum($total_carrito)?>">
+
                         
+
                         <p class="text-title-precio">Total</p>
-                        <p class="text-title-precio"><?=array_sum($total_carrito)?> €</p>
+                        <p class="text-title-precio" id="precio-total"></p>
+
                         <?php $_SESSION['cantidad']['total']=array_sum($total_carrito)?>
                     </div>
                     <form action="?controller=pedido&action=trampedido" method="post">
-                        <button class="action-button" type="submit">Tramitar pedido</button>
+                        <button class="action-button" id="tramitar-pedido" type="submit">Tramitar pedido</button>
                     </form>
                 </div>
             </div>
@@ -93,4 +96,5 @@ session_start();
 </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 <script src="assets/js/propina.js"></script>

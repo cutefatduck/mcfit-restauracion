@@ -19,13 +19,17 @@ class PedidoController {
             $cliente_id = $_SESSION['user']->getClienteId();
             $time = date("YmdHi");
             $total= $_SESSION['cantidad']['total'];
+            $propinaArray = $_SESSION['cantidad']['propina'];
+            $propinaStr = $propinaArray['propina'];
+            $propina = floatval($propinaStr);
 
-            $cookie = [$cliente_id,$jsonString,$time,$total];
+            $totalP = $total * ($propina + 1);
+            $cookie = [$cliente_id,$jsonString,$time,$totalP,$propina];
             $serializedCookie = serialize($cookie);
             setcookie("pedido", $serializedCookie, time()+3600, "/"); 
             
             
-            PedidoDAO::setPedido($cliente_id,$jsonString,$total,$time);
+            PedidoDAO::setPedido($cliente_id,$jsonString,$totalP,$propina,$time);
 
             header('Location:'.url.'?controller=pedido&action=revisionpedido');
 

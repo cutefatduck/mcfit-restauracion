@@ -9,6 +9,7 @@ class apiController{
         return;
     }
 
+
     public function recuperarPedido(){
 
         #COOKIE ULTIMO PEDIDO
@@ -22,7 +23,9 @@ class apiController{
             $productosArray = json_decode($pedido[1]);
             /*Precio*/
             $precioTotal = $pedido[3];
-    
+            /*Propina*/
+            $propina = $pedido[4];
+
             $productshow = [];
             $i = 0;
             foreach ($productosArray as $producto){
@@ -54,7 +57,10 @@ class apiController{
             $contenidoQr .= "Imagen: ".$imgProducto . "\n";
             $contenidoQr .= "Cantidad: ".$cantidad . "\n";
             $contenidoQr .= "-----------\n";
+
+            
         }
+        $contenidoQr .= "Propina ".$propina ."\n";
         $contenidoQr .= "Precio Total ".$precioTotal;
         
         echo json_encode($contenidoQr, JSON_UNESCAPED_UNICODE);
@@ -83,6 +89,13 @@ class apiController{
             echo json_encode(array('error' => 'Solicitud no permitida'));
             return;
         }
+    }
+
+    public function recibirPropina(){
+        session_start();
+        $propina = json_decode(file_get_contents('php://input'), true);
+        $_SESSION['cantidad']['propina'] = $propina;
+
     }
 
 }
