@@ -37,7 +37,7 @@ class apiController{
             }
 
             $usuarioId = $pedido[0];
-            $usuario = UsuarioDAO::getClienteByID($usuarioId);
+            $usuario = UsuarioDAO::getClienteNameByID($usuarioId);
         }
 
         $contenidoQr = "";
@@ -85,10 +85,23 @@ class apiController{
 
     public function recogerUserId(){
         session_start();
-        $usuario = $_SESSION['user']->getClienteId();
-        echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+        if(isset($_SESSION['user'])){
+            $usuario = $_SESSION['user']->getClienteId();
+            echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+            return;
+        }
         return;
     }
 
+    public function getPuntos(){
+        session_start();
+        if(isset($_SESSION['user'])){
+            $usuarioId = $_SESSION['user']->getClienteId();
+            $usuario = UsuarioDAO::getClienteByID($usuarioId);
+            echo json_encode($usuario->getPuntos(), JSON_UNESCAPED_UNICODE);
+            return;
+        }
+        return;
+    }
 }
 ?>

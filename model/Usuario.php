@@ -5,6 +5,7 @@ class Usuario {
     protected $cliente_id;
     protected $usuario;
     protected $email;
+    protected $puntos;
     protected $nombre;
     protected $apellidos;
     protected $direccion;
@@ -136,6 +137,24 @@ class Usuario {
     public function setTelefono($telefono): self
     {
         $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of puntos
+     */
+    public function getPuntos()
+    {
+        return $this->puntos;
+    }
+
+    /**
+     * Set the value of puntos
+     */
+    public function setPuntos($puntos): self
+    {
+        $this->puntos = $puntos;
 
         return $this;
     }

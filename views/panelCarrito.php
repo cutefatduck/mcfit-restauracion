@@ -42,12 +42,6 @@ session_start();
             </div>
             <div class="col-md-4">
                 <div class="card-carrito-total">
-                    <div class="carrito-recuento">
-                    <?php $total_carrito = []; ?>
-                        <?php for($i=0;$i<count($precio_carrito);$i++) { ?>
-                            <p class="text-recuento"><?=$precio_carrito[$i]?> * <?=$cantidad_carrito[$i]?> = <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
-                        <?php } ?>
-                    </div>
                     <div class="propinas-container">
                         <h3 class="comentario-nombre">Propinas</h3>
                         <hr>
@@ -70,6 +64,21 @@ session_start();
                             <label for="40-propina">40%</label>
                         </p>
                     </div>
+                    <div class="propinas-container">
+                        <h3 class="comentario-nombre">Puntos de fidelidad</h3>
+                        <hr>
+                        <div class="d-flex">
+                        <p class="text-puntos" id="puntos">0</p><p class="text-puntos">puntos</p>
+                        </div>
+                    </div>
+
+                    <div class="carrito-recuento">
+                    <?php $total_carrito = []; ?>
+                        <?php for($i=0;$i<count($precio_carrito);$i++) { ?>
+                            <p class="text-recuento"><?=$precio_carrito[$i]?> * <?=$cantidad_carrito[$i]?> = <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
+                        <?php } ?>
+                    </div>
+
                     <div class="d-flex justify-content-between">
                         <input type="number" id="total-carrto" hidden value="<?=array_sum($total_carrito)?>">
 

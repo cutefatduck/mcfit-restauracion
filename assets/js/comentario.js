@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    userId = 0;
     getUserID();
     axiosData();
 });
 
+let userId = 0
 var data; // Variable para almacenar los datos
 
 function axiosData(){
@@ -156,21 +156,21 @@ function enviarComentario(comentario) {
     .then(response => {
         console.log('Comentario enviado:', response.config.data);
         notie.alert({
-            type: 1, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
-            text: "Comentario agregado correctamente",
-            stay: false, // optional, default = false
-            time: 2, // optional, default = 3, minimum = 1,
-            position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+            type: 1, 
+            text: userId,
+            stay: false, 
+            time: 2, 
+            position: 'top' 
           })
         axiosData();
     })
     .catch(error => {
         notie.alert({
-            type: 3, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+            type: 3, 
             text: "Error al agregar comentario",
-            stay: false, // optional, default = false
-            time: 2, // optional, default = 3, minimum = 1,
-            position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+            stay: false,
+            time: 2,
+            position: 'top'
           })
         console.error('Error al enviar comentario:', error);
     });
@@ -179,18 +179,39 @@ function enviarComentario(comentario) {
 document.getElementById('formulario-comentario').addEventListener('submit', function (event) {
     event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
+    let contenido = document.getElementById('contenido').value
+    let rating = parseInt(obtenerValorRadio())
+
     // Obtén los datos del formulario
-    var comentario = {
-        contenido: document.getElementById('contenido').value,
+    if(userId == 0){
+        notie.alert({
+            type: 2,
+            text: "Inicia session para comentar",
+            stay: false,
+            time: 2,
+            position: 'top'
+          })
+    }else if(contenido == ""|| obtenerValorRadio() == ""){
+        notie.alert({
+            type: 3,
+            text: "Rellena todos los campos",
+            stay: false,
+            time: 2,
+            position: 'top'
+          })
+    }else{
+        var comentario = {
+        contenido: contenido,
         usuario: userId,
-        rating: parseInt(obtenerValorRadio())
-    };
+        rating: rating
+        };
 
-    // Envía el comentario al servidor
-    enviarComentario(comentario);
+        // Envía el comentario al servidor
+        enviarComentario(comentario);
 
-    // Limpia el formulario después de enviar el comentario
-    document.getElementById('contenido').value = '';
+        // Limpia el formulario después de enviar el comentario
+        document.getElementById('contenido').value = '';
+    }
 });
 
 

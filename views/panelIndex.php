@@ -162,7 +162,7 @@
               <div class="rating d-flex flex-row-reverse justify-content-end">
                 <input type="radio" id="estrella5" name="puntuacion" value="5">
                 <label for="estrella5"></label>
-                <input type="radio" id="estrella4" name="puntuacion" value="4">
+                <input type="radio" id="estrella4" name="puntuacion" value="4" checked>
                 <label for="estrella4"></label>
                 <input type="radio" id="estrella3" name="puntuacion" value="3">
                 <label for="estrella3"></label>

@@ -565,9 +565,15 @@
 }
 
 .propinas-container{
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+.text-puntos{
+    color: var(--color-grey-text);
+    font-weight: 800;
+    margin-right: 10px;
+    font-size: 20px;
+}
  /*Panel Usuario*/
  
  .container-dtbuttons{
