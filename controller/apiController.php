@@ -68,34 +68,26 @@ class apiController{
     }
 
     public function subirComentario() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = json_decode(file_get_contents('php://input'), true);
+        $propina = json_decode(file_get_contents('php://input'), true);
+        $usuario = $propina['usuario'];
+        $contenido = $propina['contenido'];
+        $rating = $propina['rating'];
 
-            if (isset($data['contenido']) && isset($data['usuario'])) {
-                $nuevo_comentario = new Comentario($data['contenido'], $data['usuario']);
-
-                if (ComentarioDAO::insertarComentario($nuevo_comentario)) {
-                    echo json_encode(array('mensaje' => 'Comentario insertado correctamente'));
-                    return;
-                } else {
-                    echo json_encode(array('error' => 'Error al insertar el comentario'));
-                    return;
-                }
-            } else {
-                echo json_encode(array('error' => 'Datos de comentario incompletos'));
-                return;
-            }
-        } else {
-            echo json_encode(array('error' => 'Solicitud no permitida'));
-            return;
-        }
-    }
+        ComentarioDAO::setComentarios ($usuario, $contenido, $rating);
+    }   
 
     public function recibirPropina(){
         session_start();
         $propina = json_decode(file_get_contents('php://input'), true);
         $_SESSION['cantidad']['propina'] = $propina;
 
+    }
+
+    public function recogerUserId(){
+        session_start();
+        $usuario = $_SESSION['user']->getClienteId();
+        echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+        return;
     }
 
 }

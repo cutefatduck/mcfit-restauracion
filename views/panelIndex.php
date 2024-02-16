@@ -7,6 +7,7 @@
 </head>
 
 <?php include_once "views/cabecera.php"?>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
 
 <body>
 <section>
@@ -157,7 +158,7 @@
           </div>
           <div class="col-8">
             <form id="formulario-comentario">
-              <textarea style="resize: none;"type="textarea" class="input-login" placeholder="Escribe tu opinion"></textarea>
+              <textarea style="resize: none;"type="textarea" class="input-login" id="contenido" placeholder="Escribe tu opinion"></textarea>
               <div class="rating d-flex flex-row-reverse justify-content-end">
                 <input type="radio" id="estrella5" name="puntuacion" value="5">
                 <label for="estrella5"></label>
@@ -167,7 +168,7 @@
                 <label for="estrella3"></label>
                 <input type="radio" id="estrella2" name="puntuacion" value="2">
                 <label for="estrella2"></label>
-                <input type="radio" id="estrella1" name="puntuacion" value="1" checked>
+                <input type="radio" id="estrella1" name="puntuacion" value="1" >
                 <label for="estrella1"></label>
               </div>
               <button type="submit" class="fill-button">Enviar</button>
@@ -177,6 +178,7 @@
           </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+        <script src="https://unpkg.com/notie"></script>
         <script src="assets/js/comentario.js"></script>
       </div>
     </div>

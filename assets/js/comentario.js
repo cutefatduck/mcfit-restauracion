@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    userId = 0;
+    getUserID();
     axiosData();
 });
 
@@ -96,7 +98,7 @@ function printData(data) {
         let section = document.getElementById("comentarios");
         var comentario = document.createElement("div");
         section.appendChild(comentario);
-        comentario.innerHTML = "<h1 class='comentario-nombre'>Parece que esta vacio por aqui</h1><p>Contenido de la nueva vista...</p>";
+        comentario.innerHTML = "<h1 class='comentario-nombre'>Parece que esta vacio por aqui</h1><p>Prueba con otro filtro o se el primero en comentar</p>";
     }
 }
 
@@ -146,18 +148,30 @@ function shouldShowComment(comentario) {
 /*ADD COMENTARIO*/
 
 function enviarComentario(comentario) {
-    axios.post('http://localhost/testmunoz/restaurante/index.php', {
-        controller: 'api',
-        action: 'subirComentario',
+    axios.post('http://localhost/testmunoz/restaurante/index.php?controller=api&action=subirComentario', {
         contenido: comentario.contenido,
-        usuario: comentario.usuario
+        usuario: comentario.usuario,
+        rating: comentario.rating
     })
     .then(response => {
-        console.log('Comentario enviado:', response.data);
-        // Actualiza la lista de comentarios después de agregar uno nuevo
+        console.log('Comentario enviado:', response.config.data);
+        notie.alert({
+            type: 1, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+            text: "Comentario agregado correctamente",
+            stay: false, // optional, default = false
+            time: 2, // optional, default = 3, minimum = 1,
+            position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+          })
         axiosData();
     })
     .catch(error => {
+        notie.alert({
+            type: 3, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+            text: "Error al agregar comentario",
+            stay: false, // optional, default = false
+            time: 2, // optional, default = 3, minimum = 1,
+            position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+          })
         console.error('Error al enviar comentario:', error);
     });
 }
@@ -168,7 +182,8 @@ document.getElementById('formulario-comentario').addEventListener('submit', func
     // Obtén los datos del formulario
     var comentario = {
         contenido: document.getElementById('contenido').value,
-        usuario: document.getElementById('usuario').value
+        usuario: userId,
+        rating: parseInt(obtenerValorRadio())
     };
 
     // Envía el comentario al servidor
@@ -176,5 +191,44 @@ document.getElementById('formulario-comentario').addEventListener('submit', func
 
     // Limpia el formulario después de enviar el comentario
     document.getElementById('contenido').value = '';
-    document.getElementById('usuario').value = '';
 });
+
+
+function obtenerValorRadio() {
+    // Obtener todos los radios con el nombre 'puntuacion'
+    var radios = document.getElementsByName('puntuacion');
+
+    // Variable para almacenar el valor seleccionado
+    var valorSeleccionado = "";
+
+    // Recorrer los radios
+    for(var i = 0; i < radios.length; i++) {
+        // Verificar si el radio está seleccionado
+        if(radios[i].checked) {
+            // Asignar el valor seleccionado a la variable
+            valorSeleccionado = radios[i].value;
+            // Romper el bucle ya que ya hemos encontrado el valor seleccionado
+            break;
+        }
+    }
+
+    // Mostrar el valor seleccionado
+    return valorSeleccionado
+}
+
+function getUserID(){
+    axios.get('http://localhost/testmunoz/restaurante/index.php', {
+        params: {
+            controller: 'api',
+            action: 'recogerUserId'
+        }
+    })
+    .then(response => {
+        userId = response.data;
+        
+    })
+    .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+    });
+}

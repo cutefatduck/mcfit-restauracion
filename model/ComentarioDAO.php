@@ -4,7 +4,7 @@ include_once 'Comentario.php';
 
 class ComentarioDAO {
     public static function getAllComentarios() {
-        $conn = Database::connect(); // Asumiendo que la clase se llama Database y no database
+        $conn = Database::connect();
 
         $stmt = $conn->query("SELECT a.comentario_id, a.cliente_id, b.usuario, b.nombre, b.apellidos, a.comentario, a.valoracion FROM COMENTARIOS a LEFT JOIN CLIENTES b ON a.cliente_id = b.cliente_id");
 
@@ -27,8 +27,14 @@ class ComentarioDAO {
         return $comentarios;
     }
 
-    public static function setComentarios(){
-        
+    public static function setComentarios($cliente_id,$comentario,$valoracion){
+        $conn = database::connect();
+        $stmt = $conn->prepare("INSERT INTO COMENTARIOS(cliente_id, comentario, valoracion) VALUES (?, ?, ?)");
+        $stmt->bind_param("isi",$cliente_id,$comentario,$valoracion);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+
     }
 }
 ?>
