@@ -11,8 +11,8 @@ class PedidoDAO{
         $stmt->close();
         $conn->close();
 
-        // unset($_SESSION['sel']);
-        // unset($_SESSION['cantidad']);
+        unset($_SESSION['sel']);
+        unset($_SESSION['cantidad']);
     }
 
 

@@ -1,5 +1,7 @@
 <?php
-include 'model/ComentarioDAO.php';
+include_once 'model/ComentarioDAO.php';
+include_once 'model/UsuarioDAO.php';
+include_once 'model/ProductoDAO.php';
 
 
 class apiController{
@@ -14,8 +16,6 @@ class apiController{
 
         #COOKIE ULTIMO PEDIDO
         if (isset($_COOKIE["pedido"])) {
-            include_once 'model/UsuarioDAO.php';
-            include_once 'model/ProductoDAO.php';
             $serializedPedido = $_COOKIE["pedido"];
             $pedido = unserialize($serializedPedido);
 
@@ -102,6 +102,16 @@ class apiController{
             return;
         }
         return;
+    }
+
+    public function subirPuntos(){
+        session_start();
+        $puntosStr = json_decode(file_get_contents('php://input'), true);
+        $puntos = intval($puntosStr);
+        $usuarioId = $_SESSION['user']->getClienteId();
+        
+        UsuarioDAO::setPuntos($usuarioId,$puntos);
+
     }
 }
 ?>

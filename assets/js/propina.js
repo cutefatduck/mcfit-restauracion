@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     propinacheck()
     getPuntos()
+    setPuntos()
     const botonEnviarPropina = document.getElementById('tramitar-pedido');
-    botonEnviarPropina.addEventListener('click', sendPropina);
+    botonEnviarPropina.addEventListener('click', function() {
+        sendPropina();
+        sendPuntos();
+    });
 });
 
 //DEFAULT
@@ -70,7 +74,7 @@ function getPuntos(){
     .then(response => {
         puntos = response.data;
         if(Number.isInteger(puntos)){
-            setPropinaHtml(puntos);
+            setPuntosHtml(puntos);
         }
         
     })
@@ -81,10 +85,32 @@ function getPuntos(){
 
 }
 
-function setPropinaHtml(puntos){
+function setPuntosHtml(puntos){
     puntosElement = document.getElementById('puntos');
     puntosElement.innerHTML = puntos;
-    console.log(typeof puntos)
 }
 
+function setPuntos(){
+    let puntos = totalCarrito / 3
+    puntosInt = parseInt(puntos)
+    return puntosInt
+}
+
+function sendPuntos(){
+
+    let puntos = setPuntos()
+
+    axios.post('http://localhost/testmunoz/restaurante/index.php?controller=api&action=subirPuntos', puntos, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log('Respuesta:', response.config.data);
+    })
+    .catch(error => {
+        console.error('Error al enviar los datos:', error);
+    });
+    
+}
 
