@@ -1,4 +1,6 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+    standard()
     propinacheck()
     getPuntos()
     setPuntos()
@@ -7,18 +9,31 @@ document.addEventListener('DOMContentLoaded', function () {
         sendPropina();
         sendPuntos();
     });
+
+    const botonEnviarPuntos = document.getElementById('enviar-puntos');
+
+    botonEnviarPuntos.addEventListener('click', function() {
+        calcularPuntos();
+        standard()
+    });
 });
 
 //DEFAULT
+let descuento = 0
 let selectedPropina = "0.03"
-let totalCarrito = document.getElementById('total-carrto').value;
+let totalCarrito = 0
 
-let totalCarritoF = parseFloat(totalCarrito);
-sumaPrecioConPropina = selectedPropina * totalCarritoF;
+function standard(){
+    totalCarrito = document.getElementById('total-carrito').value;
 
-let precioTotal = document.getElementById('precio-total');
-total = (sumaPrecioConPropina + totalCarritoF);
-precioTotal.innerHTML = total.toFixed(2)+" €";
+    let totalCarritoF = parseFloat(totalCarrito);
+    sumaPrecioConPropina = selectedPropina * totalCarritoF;
+
+    let precioTotal = document.getElementById('precio-total');
+    total = ((sumaPrecioConPropina + totalCarritoF) - descuento);
+    precioTotal.innerHTML = total.toFixed(2)+" €";
+}
+
 
 function propinacheck(){
     const propinaRadios = document.querySelectorAll('input[type="radio"][name="propina"]');
@@ -27,15 +42,11 @@ function propinacheck(){
             if (radio.checked) {
                 selectedPropina = radio.value;
 
-                let totalCarrito = document.getElementById('total-carrto').value;
                 let totalCarritoF = parseFloat(totalCarrito);
                 sumaPrecioConPropina = selectedPropina * totalCarritoF;
-                
-                // let precioConPropina = document.getElementById('precio-propina');
-                // precioConPropina.innerHTML = sumaPrecioConPropina;
 
                 let precioTotal = document.getElementById('precio-total');
-                total = (sumaPrecioConPropina + totalCarritoF);
+                total = ((sumaPrecioConPropina + totalCarritoF) - descuento);
                 precioTotal.innerHTML = total.toFixed(2)+" €";
             }
         });
@@ -75,11 +86,11 @@ function getPuntos(){
         puntos = response.data;
         if(Number.isInteger(puntos)){
             setPuntosHtml(puntos);
+            puntosFunction(puntos);
         }
         
     })
     .catch(error => {
-        // Handle error
         console.error('Error:', error);
     });
 
@@ -88,6 +99,9 @@ function getPuntos(){
 function setPuntosHtml(puntos){
     puntosElement = document.getElementById('puntos');
     puntosElement.innerHTML = puntos;
+}
+function puntosFunction(){
+    return puntos;
 }
 
 function setPuntos(){
@@ -114,3 +128,32 @@ function sendPuntos(){
     
 }
 
+
+function calcularPuntos(puntos){
+    puntos = puntosFunction()
+    let puntosSel = document.getElementById('input-puntos').value
+    
+    if(puntosSel > puntos){
+        notie.alert({
+            type: 3,
+            text: "Selecciona una cantidad de puntos correcta",
+            stay: false,
+            time: 3,
+            position: 'top'
+          })
+
+    }else{
+        notie.alert({
+            type: 1,
+            text: "Se han seleccionado correctamente los puntos",
+            stay: false,
+            time: 3,
+            position: 'top'
+          })
+
+          descuento = puntosSel * 0.5
+
+
+
+    }
+}

@@ -2,6 +2,7 @@
 session_start();
 
 ?>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
 <div class="container-pagina">
 <div class="margin-title"><h2 class="title-ltr">Carrito</h2>
     <?php if(empty($_SESSION['sel'])){?>
@@ -38,6 +39,7 @@ session_start();
                 </div>
                 <?php $precio_carrito[] = $carrito_product->getPrecio() ?>
                 <?php $cantidad_carrito[] = $_SESSION['cantidad'][$carrito_product->getProductoId()] ?>
+                <?php $nombre_producto[] = $carrito_product->getNombre()?>
             <?php } ?>
             </div>
             <div class="col-md-4">
@@ -67,20 +69,25 @@ session_start();
                     <div class="propinas-container">
                         <h3 class="comentario-nombre">Puntos de fidelidad</h3>
                         <hr>
+                        <p class="text-puntos-title">Inserta una cantidad: </p>
                         <div class="d-flex">
-                        <p class="text-puntos" id="puntos">0</p><p class="text-puntos">puntos</p>
+                            <p class = "text-puntos">disp.  <span class="color-puntos" id="puntos">0</span> puntos </p>
+                            <input type="number" class="input-puntos" id="input-puntos">
+                            <button type="submit" id="enviar-puntos" class="puntos-button">Aplicar puntos</button>
                         </div>
                     </div>
 
                     <div class="carrito-recuento">
                     <?php $total_carrito = []; ?>
                         <?php for($i=0;$i<count($precio_carrito);$i++) { ?>
-                            <p class="text-recuento"><?=$precio_carrito[$i]?> * <?=$cantidad_carrito[$i]?> = <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
+                            <p class="text-recuento"><?=$nombre_producto[$i]?>(<?=$cantidad_carrito[$i]?>) <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
                         <?php } ?>
+                            <p id="propina"></p>
+                            <p id="descuento"></p>
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <input type="number" id="total-carrto" hidden value="<?=array_sum($total_carrito)?>">
+                        <input type="number" id="total-carrito" hidden value="<?=array_sum($total_carrito)?>">
 
                         
 
@@ -106,4 +113,5 @@ session_start();
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+<script src="https://unpkg.com/notie"></script>
 <script src="assets/js/propina.js"></script>
