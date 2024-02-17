@@ -109,9 +109,20 @@ class apiController{
         $puntosStr = json_decode(file_get_contents('php://input'), true);
         $puntos = intval($puntosStr);
         $usuarioId = $_SESSION['user']->getClienteId();
-        
+
         UsuarioDAO::setPuntos($usuarioId,$puntos);
 
+    }
+
+    public function sendDescuento(){
+        session_start();
+        $descuentoYpuntos = json_decode(file_get_contents('php://input'), true);
+
+        $descuento = $descuentoYpuntos['descuento'];
+        $puntos = $descuentoYpuntos['puntos'];
+
+        $_SESSION['cantidad']['descuento'] = $descuento;
+        $_SESSION['cantidad']['puntos'] = $puntos;
     }
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 include_once 'model/PedidoDAO.php';
+include_once 'model/UsuarioDAO.php';
 class PedidoController {
     public function trampedido() {
         session_start();
@@ -19,16 +20,18 @@ class PedidoController {
             $cliente_id = $_SESSION['user']->getClienteId();
             $time = date("YmdHi");
             $total= $_SESSION['cantidad']['total'];
+            $descuento = $_SESSION['cantidad']['descuento'];
             $propinaArray = $_SESSION['cantidad']['propina'];
+            $puntos = $_SESSION['cantidad']['puntos'];
             $propinaStr = $propinaArray['propina'];
             $propina = floatval($propinaStr);
 
-            $totalP = $total * ($propina + 1);
+            $totalP = round(max(0,($total * ($propina + 1)- $descuento)),2);
             $cookie = [$cliente_id,$jsonString,$time,$totalP,$propina];
             $serializedCookie = serialize($cookie);
             setcookie("pedido", $serializedCookie, time()+3600, "/"); 
             
-            
+            UsuarioDAO::updatePuntos($cliente_id,$puntos);
             PedidoDAO::setPedido($cliente_id,$jsonString,$totalP,$propina,$time);
 
             header('Location:'.url.'?controller=pedido&action=revisionpedido');

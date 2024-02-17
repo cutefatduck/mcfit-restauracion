@@ -183,6 +183,15 @@ class UsuarioDAO{
         $stmt->close();
         $conn->close();
     }
+
+    public static function updatePuntos($id,$puntos){
+        $conn = database::connect();
+        $stmt = $conn->prepare("UPDATE CLIENTES SET puntos = puntos - ? WHERE cliente_id = ?");
+        $stmt->bind_param("ii",$puntos,$id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
 }
 
 ?>

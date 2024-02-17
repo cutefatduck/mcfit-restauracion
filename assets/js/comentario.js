@@ -157,7 +157,7 @@ function enviarComentario(comentario) {
         console.log('Comentario enviado:', response.config.data);
         notie.alert({
             type: 1, 
-            text: userId,
+            text: "Comentario enviado correctamente",
             stay: false, 
             time: 2, 
             position: 'top' 

@@ -8,13 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
     botonEnviarPropina.addEventListener('click', function() {
         sendPropina();
         sendPuntos();
+        sendDescuento();
     });
 
     const botonEnviarPuntos = document.getElementById('enviar-puntos');
 
     botonEnviarPuntos.addEventListener('click', function() {
         calcularPuntos();
-        standard()
+        standard();
     });
 });
 
@@ -30,7 +31,7 @@ function standard(){
     sumaPrecioConPropina = selectedPropina * totalCarritoF;
 
     let precioTotal = document.getElementById('precio-total');
-    total = ((sumaPrecioConPropina + totalCarritoF) - descuento);
+    total = (Math.max(0,(sumaPrecioConPropina + totalCarritoF) - descuento));
     precioTotal.innerHTML = total.toFixed(2)+" €";
 }
 
@@ -46,7 +47,7 @@ function propinacheck(){
                 sumaPrecioConPropina = selectedPropina * totalCarritoF;
 
                 let precioTotal = document.getElementById('precio-total');
-                total = ((sumaPrecioConPropina + totalCarritoF) - descuento);
+                total = (Math.max(0,(sumaPrecioConPropina + totalCarritoF) - descuento));
                 precioTotal.innerHTML = total.toFixed(2)+" €";
             }
         });
@@ -129,11 +130,13 @@ function sendPuntos(){
 }
 
 
+let puntosSelInt = 0
 function calcularPuntos(puntos){
     puntos = puntosFunction()
     let puntosSel = document.getElementById('input-puntos').value
+    puntosSelInt = parseInt(puntosSel)
     
-    if(puntosSel > puntos){
+    if(puntosSelInt > puntos || puntosSelInt < 0 || isNaN(puntosSelInt)){
         notie.alert({
             type: 3,
             text: "Selecciona una cantidad de puntos correcta",
@@ -153,7 +156,25 @@ function calcularPuntos(puntos){
 
           descuento = puntosSel * 0.5
 
-
-
     }
+}
+
+function sendDescuento(){
+
+    const descuentoYpuntos = {
+        descuento: descuento,
+        puntos: puntosSelInt
+    }
+
+    axios.post('http://localhost/testmunoz/restaurante/index.php?controller=api&action=sendDescuento', descuentoYpuntos, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log('Respuesta:', response.config.data);
+    })
+    .catch(error => {
+        console.error('Error al enviar los datos:', error);
+    });
 }

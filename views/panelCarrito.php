@@ -71,8 +71,9 @@ session_start();
                         <hr>
                         <p class="text-puntos-title">Inserta una cantidad: </p>
                         <div class="d-flex">
+                            <input type="number" class="input-puntos" value="0"id="input-puntos">
                             <p class = "text-puntos">disp.  <span class="color-puntos" id="puntos">0</span> puntos </p>
-                            <input type="number" class="input-puntos" id="input-puntos">
+                            
                             <button type="submit" id="enviar-puntos" class="puntos-button">Aplicar puntos</button>
                         </div>
                     </div>
