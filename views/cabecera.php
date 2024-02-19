@@ -22,7 +22,6 @@
                 <?php if(isset($_SESSION['user'])){?>
                   <a class="nav-button" href="?controller=user&action=userData"><?=$_SESSION['user']->getUsuario()?></a>
                   <a class="nav-button carrito-img" href="?controller=carrito&action=compra">
-                     <img src="assets/img/anadir-a-la-cesta.svg" alt="carrito" class="carrito-img">
                   </a>
                 <?php }elseif(isset($_SESSION['admin'])){?>
                   <a class="nav-button" href="?controller=admin&action=userDataAdmin"><?=$_SESSION['admin']->getUsuario()?></a>

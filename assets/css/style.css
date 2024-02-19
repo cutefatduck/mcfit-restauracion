@@ -288,7 +288,6 @@
  /*FOOTER*/
  .footer{
      margin-top: 75px;
-     height: 497px;
  }
  .footer-1{
      height: 145px;
@@ -300,7 +299,8 @@
      position: relative;
  }
  .footer-2{
-     height: 352px;
+    padding-bottom: 20px;
+     height: auto;
      background-color: #242f3a;
      text-align: end;
  }
@@ -971,7 +971,7 @@
     .card-carrito-total{
         margin: 0;
     }
- 
+
      
      
  }

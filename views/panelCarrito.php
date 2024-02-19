@@ -123,8 +123,8 @@ session_start();
 
                         
 
-                        <p class="text-title-precio">Total</p>
-                        <p class="text-title-precio" id="precio-total"></p>
+                        <!--<p class="text-title-precio">Total</p>-->
+                        <!--<p class="text-title-precio" id="precio-total"></p>-->
 
                         <?php $_SESSION['cantidad']['total']=array_sum($total_carrito)?>
                     </div>
