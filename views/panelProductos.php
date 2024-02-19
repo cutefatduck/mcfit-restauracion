@@ -1,6 +1,11 @@
+<head>
+    <title>Mcfi restaurante - carta</title>
+    <?php include_once "views/meta.php"?>
+
+</head>
 <div class="container-pagina">
     <div class="margin-title"><h2 class="title-ltr">Carta</h2>
-    <select id="orden">
+    <select class="desplegable-categorias"id="orden">
             <option value="0">Todos</option>
 
             <?php foreach($allCategories as $categoria ){?>

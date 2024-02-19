@@ -1,3 +1,8 @@
+<head>
+    <title>Mcfi restaurante - editar</title>
+    <?php include_once "views/meta.php"?>
+
+</head>
 <body>
     <div class='container-login'>
         <div class="login">

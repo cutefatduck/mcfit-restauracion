@@ -1,4 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -22,15 +21,35 @@
                 <?php session_start();?>
                 <?php if(isset($_SESSION['user'])){?>
                   <a class="nav-button" href="?controller=user&action=userData"><?=$_SESSION['user']->getUsuario()?></a>
-                  <a class="nav-button" href="?controller=carrito&action=compra">Carrito</a>
+                  <a class="nav-button carrito-img" href="?controller=carrito&action=compra">
+                     <img src="assets/img/anadir-a-la-cesta.svg" alt="carrito" class="carrito-img">
+                  </a>
                 <?php }elseif(isset($_SESSION['admin'])){?>
                   <a class="nav-button" href="?controller=admin&action=userDataAdmin"><?=$_SESSION['admin']->getUsuario()?></a>
                 <?php }else{?>
-                  <a class="nav-button" href="?controller=user&action=login">Login</a>
-                  <a class="nav-button" href="?controller=carrito&action=compra">Carrito</a>
+                  <a class="nav-button " href="?controller=user&action=login">Login</a>
+                  <a class="nav-button carrito-img" href="?controller=carrito&action=compra">
+                  </a>
                 <?php } ?>
             </form>
           </div>
         </div>
       </nav>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+  var url = window.location.href;
+
+
+  var links = document.querySelectorAll('.nav-link');
+  
+
+  links.forEach(function(link) {
+
+    if (link.href === url) {
+      console.log('hola')
+      link.classList.add('active');
+    }
+  });
+</script>

@@ -15,15 +15,15 @@ function axiosData(){
         console.log(data);
     })
     .catch(error => {
-        // Handle error
         console.error('Error:', error);
     });
 }
 
 
-// Function to retrieve data from QR code API
 async function retrieveQRData(data) {
-    const apiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data='+encodeURIComponent(data);
+    localStorage.setItem('QR', data);
+    var retrievedData = localStorage.getItem('QR');
+    const apiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data='+encodeURIComponent(retrievedData);
 
     try {
         const imgElement = document.createElement('img');

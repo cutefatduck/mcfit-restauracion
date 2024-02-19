@@ -50,7 +50,7 @@ selectElement.addEventListener("change", function() {
 
 function printData(data) {
     let section = document.getElementById("comentarios");
-    section.innerHTML = ''; // Clear existing content
+    section.innerHTML = ''; 
     let comentariosMostrados = false;
     if (data && data.length > 0) {
         // Recorremos el array en reversa

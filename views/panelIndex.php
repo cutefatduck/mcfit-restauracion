@@ -121,7 +121,7 @@
       <div class="title-container">
         <h2 class="title-ltr text-center">COMENTARIOS</h2>
         <div class="row">
-          <div class="col-4">
+          <div class="col-md-3">
             <div class="comentario-container margin-lefta">
                 <h3 class="comentario-nombre">Ordenar por</h3>
                 <hr>
@@ -156,7 +156,7 @@
               </p>
             </div>
           </div>
-          <div class="col-8">
+          <div class="col-md-9">
             <form id="formulario-comentario">
               <textarea style="resize: none;"type="textarea" class="input-login" id="contenido" placeholder="Escribe tu opinion"></textarea>
               <div class="rating d-flex flex-row-reverse justify-content-end">

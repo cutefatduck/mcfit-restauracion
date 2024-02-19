@@ -1,3 +1,8 @@
+<head>
+    <title>Mcfi restaurante - productos admin</title>
+    <?php include_once "views/meta.php"?>
+
+</head>
 <div class="container-pagina">
 <div class="margin-title">
     <h2 class="title-ltr">Lista de productos</h2>

@@ -60,20 +60,20 @@ class UsuarioDAO{
         $result = $stmt->get_result();
         $usuarioObj = $result->fetch_object('Administrador');
         if(empty($usuarioObj)){
-            header('Location:'.url.'?controller=admin&action=login');
+            header('Location:'.url.'?controller=user&action=loginadmin');
             return 2;
         }else{
         
 
             $clienteid = $usuarioObj->getClienteId();
-            $stmt = $conn->prepare("SELECT * FROM CREDENCIALES WHERE cliente_id=?");
+            $stmt = $conn->prepare("SELECT * FROM CREDENCIALES WHERE admin_id=?");
             $stmt->bind_param("i",$clienteid);
             $stmt->execute();
             $result = $stmt->get_result();
             $conn->close;
 
             if($result->num_rows === 0 ){
-                header('Location:'.url.'?controller=admin&action=login');
+                header('Location:'.url.'?controller=user&action=loginadmin');
                 return 2;
             }else{
                 $row = $result->fetch_assoc();
@@ -85,7 +85,7 @@ class UsuarioDAO{
                     header('Location:'.url.'?controller=index&action=index');
                     return 3;
                 }else{
-                    header('Location:'.url.'?controller=admin&action=login');
+                    header('Location:'.url.'?controller=user&action=loginadmin');
                     return 2;
                 }
             }

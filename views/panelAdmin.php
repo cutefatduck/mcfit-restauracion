@@ -1,4 +1,8 @@
+<head>
+    <title>Mcfi restaurante - panel admin</title>
+    <?php include_once "views/meta.php"?>
 
+</head>
 <body>
 <div class="container-pagina">
     <h2 class="title-ltr">Bienvenido <?=$_SESSION['admin']->getNombre()?></h2>

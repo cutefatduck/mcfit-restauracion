@@ -2,9 +2,15 @@
 session_start();
 
 ?>
+<head>
+    <title>Mcfi restaurante - carrito</title>
+    <?php include_once "views/meta.php"?>
+
+</head>
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
 <div class="container-pagina">
 <div class="margin-title"><h2 class="title-ltr">Carrito</h2>
+
     <?php if(empty($_SESSION['sel'])){?>
         <div class="carrito-vacio">
             <p class="p-custom-carrito">El carrito esta vacio</p>
@@ -41,52 +47,77 @@ session_start();
                 <?php $cantidad_carrito[] = $_SESSION['cantidad'][$carrito_product->getProductoId()] ?>
                 <?php $nombre_producto[] = $carrito_product->getNombre()?>
             <?php } ?>
+            <div class="vaciar-carrito">
+                <form action="?controller=carrito&action=vaciarcarrito" method="post">
+                    <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
+                </form>
             </div>
+            </div>
+
             <div class="col-md-4">
                 <div class="card-carrito-total">
-                    <div class="propinas-container">
-                        <h3 class="comentario-nombre">Propinas</h3>
-                        <hr>
-                            <input type="radio" id="nada-propina" name="propina" value="0">
-                            <label for="nada-propina">Nada</label>
+                    <div class ="bloque-compra">
+                        <div class="propinas-container">
+                            <h3 class="comentario-nombre">Propinas</h3>
+                            <hr>
+                                <input type="radio" id="nada-propina" name="propina" value="0">
+                                <label for="nada-propina">Nada</label>
 
-                            <input type="radio" id="3-propina" name="propina" value="0.03" checked>
-                            <label for="3-propina">3%</label>
-   
-                            <input type="radio" id="6-propina" name="propina" value="0.06">
-                            <label for="6-propina">6%</label>
-             
-                            <input type="radio" id="10-propina" name="propina" value="0.1">
-                            <label for="10-propina">10%</label>
-                   
-                            <input type="radio" id="20-propina" name="propina" value="0.2">
-                            <label for="20-propina">20%</label>
-                 
-                            <input type="radio" id="40-propina" name="propina" value="0.4">
-                            <label for="40-propina">40%</label>
-                        </p>
-                    </div>
-                    <div class="propinas-container">
-                        <h3 class="comentario-nombre">Puntos de fidelidad</h3>
-                        <hr>
-                        <p class="text-puntos-title">Inserta una cantidad: </p>
-                        <div class="d-flex">
-                            <input type="number" class="input-puntos" value="0"id="input-puntos">
-                            <p class = "text-puntos">disp.  <span class="color-puntos" id="puntos">0</span> puntos </p>
-                            
-                            <button type="submit" id="enviar-puntos" class="puntos-button">Aplicar puntos</button>
+                                <input type="radio" id="3-propina" name="propina" value="0.03" checked>
+                                <label for="3-propina">3%</label>
+    
+                                <input type="radio" id="6-propina" name="propina" value="0.06">
+                                <label for="6-propina">6%</label>
+                
+                                <input type="radio" id="10-propina" name="propina" value="0.1">
+                                <label for="10-propina">10%</label>
+                    
+                                <input type="radio" id="20-propina" name="propina" value="0.2">
+                                <label for="20-propina">20%</label>
+                    
+                                <input type="radio" id="40-propina" name="propina" value="0.4">
+                                <label for="40-propina">40%</label>
+                            </p>
                         </div>
                     </div>
-
-                    <div class="carrito-recuento">
-                    <?php $total_carrito = []; ?>
-                        <?php for($i=0;$i<count($precio_carrito);$i++) { ?>
-                            <p class="text-recuento"><?=$nombre_producto[$i]?>(<?=$cantidad_carrito[$i]?>) <?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> € </p>
-                        <?php } ?>
-                            <p id="propina"></p>
-                            <p id="descuento"></p>
+                    <div class ="bloque-compra">
+                        <div class="propinas-container">
+                            <h3 class="comentario-nombre">Puntos de fidelidad</h3>
+                            <hr>
+                            <p class="text-puntos-title">Inserta una cantidad: </p>
+                            <div class="row">
+                                <div class="col-md-6 d-flex">
+                                    <input type="number" class="input-puntos" value="0"id="input-puntos">
+                                    <p class = "text-puntos">disp.  <span class="color-puntos" id="puntos">0</span> puntos </p>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <button type="submit" id="enviar-puntos" class="puntos-button">Aplicar puntos</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
+                    <div class="bloque-compra">
+                        <div class="carrito-recuento">
+                            <?php $total_carrito = []; ?>
+                                <?php for($i=0;$i<count($precio_carrito);$i++) { ?>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="text-recuento"><?=$nombre_producto[$i]?> (<?=$cantidad_carrito[$i]?>)</p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="text-recuento"><?=$total_carrito[$i]=$precio_carrito[$i]*$cantidad_carrito[$i]?> €</p>
+                                        </div>
+                                        <hr class="hr-recuento">
+                                        
+                                <?php } ?>
+                                                                
+                                        <p id="propina"></p>
+                                        <p id="descuento"></p>
+                                    </div>
+                            </div>
+                        </div>
+                     </div>
                     <div class="d-flex justify-content-between">
                         <input type="number" id="total-carrito" hidden value="<?=array_sum($total_carrito)?>">
 
@@ -103,10 +134,6 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="margin-title">
-    <form action="?controller=carrito&action=vaciarcarrito" method="post">
-        <button class="boton-eliminar d-flex" type='submit' name='submit' value=''>Vaciar carrito</button>
-    </form>
     <?php } ?>
 
 </div>

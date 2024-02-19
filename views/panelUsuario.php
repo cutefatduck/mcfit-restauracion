@@ -1,9 +1,19 @@
+<head>
+    <title>Mcfi restaurante - usuario</title>
+    <?php include_once "views/meta.php"?>
 
+</head>
 <body>
 <div class="container-pagina">
     <div class="margin-title">
-        <h2 class="title-ltr">Bienvenido <?=$_SESSION['user']->getNombre()?></h2>
+        <h2 class="title-ltr text-center">Bienvenido <?=$_SESSION['user']->getNombre()?></h2>
+        <?php  if(isset($_COOKIE['pedido'])){ ?>
+            <div class="ver-pedido d-flex">
+                <p class="carrito-text ultimo-pedido-text"> Ultimo pedido:</p><p class="ultimo-pedido-text"><?=$precioTotal?>€<p class="ultimo-pedido-text"><?=$formattedDate?></p>
+            </div>
+        <?php } ?>
     </div>
+
     <div class="container-dtbuttons d-flex">
         <div class="row container-dtusuario">
             <div class="col-sm-6 justify-content-center d-flex">
@@ -22,18 +32,7 @@
                 </form>
             </div>
         </div>
-
-
-    <?php 
-        if(isset($_COOKIE['pedido'])){
-            include_once 'panelPedidos.php';
-        }
-        
-    ?>
-
     </div>
 </div>
-
-
 
 </body>
